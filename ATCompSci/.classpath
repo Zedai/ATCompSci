@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="Projects"/>
+	<classpathentry kind="src" path="Recursion"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="src" path="stuff"/>
+	<classpathentry kind="src" path="Tutorials"/>
+	<classpathentry kind="src" path="sTACKSJF"/>
+	<classpathentry kind="src" path="somesets"/>
+	<classpathentry kind="src" path="somemaps"/>
+	<classpathentry kind="src" path="heshTabeles"/>
+	<classpathentry kind="src" path="trEeerEes"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
