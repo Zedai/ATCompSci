@@ -49,7 +49,7 @@ public class Morse {
 				t += "/";
 			else
 				t += decoder.get(x + "");
-		return t;
+		return t.trim();
 	}
 
 	public static void inOrder() {
@@ -68,8 +68,9 @@ public class Morse {
 	
 	public static void main(String[] args) throws FileNotFoundException{
 		init();
-		System.out.println(decode("__ _.__/ .._. . . _/ ... __ . ._.. ._../ ._ _. _../ __ _.__/ _. ___ ... ./ ._. .._ _. ..."));
-		System.out.println(encode("MY FEET SMELL AND MY NOSE RUNS"));
+//		System.out.println(decoder.toString());
+		System.out.println("DECODE:: " + decode("__ _.__/ .._. . . _/ ... __ . ._.. ._../ ._ _. _../ __ _.__/ _. ___ ... ./ ._. .._ _. ..."));
+		System.out.print("ENCODE:: " + encode("MY FEET SMELL AND MY NOSE RUNS") + "\nIN ORDER:: ");
 		inOrder();
 	}
 }
