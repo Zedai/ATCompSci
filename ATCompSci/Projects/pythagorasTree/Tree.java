@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -118,7 +119,15 @@ public class Tree extends JPanel{
       application.setTitle("Pythagoras Tree");
       application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);                               
       application.add(panel);           
-      application.setVisible(true);   
-    }
+      application.setUndecorated(true);
+      application.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+      application.setVisible(true);
+      
+      Scanner keyboard = new Scanner(System.in);
+      if(keyboard.nextLine().equalsIgnoreCase("stop")){
+    	  keyboard.close();
+    	  System.exit(ABORT);
+      }
+	}
 
 }
