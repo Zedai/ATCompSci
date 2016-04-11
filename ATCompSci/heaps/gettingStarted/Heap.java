@@ -48,6 +48,8 @@ public class Heap {
 				swap(max, root);
 				root = max;
 			}
+			else
+				break;
 		}
 	}
 
@@ -60,7 +62,30 @@ public class Heap {
 	public void print() {
 		out.println("\n\nPRINTING THE HEAP!\n\n");
 		out.println(toString());
+		double l = Math.sqrt(list.size());
+		int levels = (int)l;
+		if(l > (int)l)
+			levels++;
 		
+		int index = 0;
+		if(levels <= 0)
+			return;		
+		for(int lIndex = 0; lIndex <= levels; lIndex++){
+				tab(levels - lIndex, (int)(4 + lIndex/-2));
+			for(int i = 0; i < Math.pow(2, lIndex); i++)
+				if(index < list.size()){
+					out.print(list.get(index) + "    ");
+					index++;
+				}
+			System.out.println();
+		}
+			
+	}
+	
+	public void tab(int levels, int length){
+		for(int i = 0; i < levels; i++)
+			for(int a = 0; a < length; a++)
+				System.out.print(" ");
 	}
 
 	public String toString() {

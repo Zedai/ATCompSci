@@ -15,28 +15,28 @@ public class HeapRunner
 		heap.add(75);
 		heap.add(17);
 		heap.add(5);
-
+		
 		heap.print();
 		heap.remove();
 		heap.print();
-//		heap.remove();
-//		heap.print();
-//		heap.remove();
-//		heap.print();
-//		heap.remove();
-//		heap.print();
-//		heap.remove();
-//		heap.print();
-//		heap.remove();
-//		heap.print();
-//		heap.remove();
-//
-//		heap.print();
-//		heap.add(25);
-//		heap.print();
-//		heap.add(35);
-//		heap.print();
-//		heap.remove();
-//		heap.print();
+		heap.remove();
+		heap.print();
+		heap.remove();
+		heap.print();
+		heap.remove();
+		heap.print();
+		heap.remove();
+		heap.print();
+		heap.remove();
+		heap.print();
+		heap.remove();
+
+		heap.print();
+		heap.add(25);
+		heap.print();
+		heap.add(35);
+		heap.print();
+		heap.remove();
+		heap.print();
 	}
 }
