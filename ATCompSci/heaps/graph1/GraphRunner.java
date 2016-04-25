@@ -1,15 +1,9 @@
 package graph1;
 
-//© A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date -
-//Class -
-//Lab  -  
-
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
-import static java.lang.System.*;
 
 public class GraphRunner
 {
@@ -21,8 +15,10 @@ public class GraphRunner
 		{
 			Graph g = new Graph(" " + file.nextLine());
 			String check = file.nextLine();
-			g.check(check.substring(0, 1), check.substring(1), check.substring(0, 1));
-			System.out.println(g.match);
+			ArrayList<String> arr = new ArrayList<String>();
+			arr.add(check.substring(0, 1));
+			g.check(check.substring(0, 1), check.substring(1), arr);
+			System.out.println(check.substring(0, 1) + " connects to " + check.substring(1) + " == " + g.match);
 		}
 		file.close();
 	}
