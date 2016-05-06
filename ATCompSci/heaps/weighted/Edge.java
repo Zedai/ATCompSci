@@ -2,12 +2,15 @@ package weighted;
 
 public class Edge {
 	private String one, two;
-	private int weight;
+	private int length, cost;
+	private double time;
 	
-	public Edge(String one, String two, int w){
+	public Edge(String one, String two, String dist, String speed, String c){
 		this.one = one;
 		this.two = two;
-		weight = w;
+		length = Integer.parseInt(dist);
+		cost = Integer.parseInt(c);
+		time = (60.0/Integer.parseInt(speed)) * Integer.parseInt(dist);
 	}
 
 	public String getOne(){
@@ -18,7 +21,15 @@ public class Edge {
 		return two;
 	}
 	
-	public int getWegiht(){
-		return weight;
+	public int getLength(){
+		return length;
+	}
+	
+	public int getCost(){
+		return cost;
+	}
+	
+	public double getTime(){
+		return time;
 	}
 }
