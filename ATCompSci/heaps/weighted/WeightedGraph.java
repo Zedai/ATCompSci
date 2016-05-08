@@ -1,14 +1,11 @@
 package weighted;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.TreeMap;
 
 public class WeightedGraph {
-	private TreeMap<String, HashSet<String>> map;
 	boolean match = false;
-	int shortestTime = 0, shortestDistance = 0, shortestCost = 0;
+	double shortestTime = 0, shortestDistance = 0, shortestCost = 0;
 	ArrayList<Node> graph = new ArrayList<Node>();
 
 	public WeightedGraph(Scanner file) {
@@ -18,69 +15,106 @@ public class WeightedGraph {
 			for (Node x : graph) {
 				if (x.getName().equalsIgnoreCase(a[0].substring(0, 1))) {
 					one = false;
-					x.addEdge(new Edge(a[0].substring(0, 1), a[0].substring(1),
-							a[1], a[2], a[3]));
+					x.addEdge(new Edge(a[0].substring(0, 1), a[0].substring(1), a[1], a[2], a[3]));
 				}
 				if (x.getName().equalsIgnoreCase(a[0].substring(1))) {
 					two = false;
-					x.addEdge(new Edge(a[0].substring(1), a[0].substring(0, 1),
-							a[1], a[2], a[3]));
+					x.addEdge(new Edge(a[0].substring(1), a[0].substring(0, 1), a[1], a[2], a[3]));
 				}
 			}
 			if (one) {
 				Node n = new Node(a[0].substring(0, 1));
-				n.addEdge(new Edge(a[0].substring(0, 1), a[0].substring(1),
-						a[1], a[2], a[3]));
+				n.addEdge(new Edge(a[0].substring(0, 1), a[0].substring(1), a[1], a[2], a[3]));
 				graph.add(n);
 			}
 			if (two) {
 				Node n = new Node(a[0].substring(1));
-				n.addEdge(new Edge(a[0].substring(1), a[0].substring(0, 1),
-						a[1], a[2], a[3]));
+				n.addEdge(new Edge(a[0].substring(1), a[0].substring(0, 1), a[1], a[2], a[3]));
 				graph.add(n);
 			}
 		}
 	}
 
-	public void checkTime(String one, String two, ArrayList<String> been, int steps) {
-		if (map.get(one).contains(two)) {
-			match = true;
-			if (shortestTime == 0 || steps <= shortestTime)
-				shortestTime = steps;
-		} else {
-			HashSet<String> set = map.get(one);
-			for (String x : set) {
+	public Node get(String one) {
+		for (Node x : graph)
+			if (x.getName().equalsIgnoreCase(one))
+				return x;
+
+		return null;
+	}
+
+	public void checkTime(String one, String two, ArrayList<String> been, double steps) {
+		boolean con = true;
+		for (Edge e : get(one).getEdges())
+			if (e.getTwo().equalsIgnoreCase(two)) {
+				match = true;
+				con = false;
+				if (shortestTime == 0 || steps <= shortestTime)
+					shortestTime = (steps + e.getTime());
+			}
+
+		if (con) {
+			ArrayList<Edge> set = get(one).getEdges();
+			for (Edge x : set) {
 				boolean add = false;
-				if (!been.contains(x)) {
+				if (!been.contains(x.getTwo())) {
 					add = true;
-					been.add(x);
-					checkTime(x, two, been, steps + 1);
+					been.add(x.getTwo());
+					checkTime(x.getTwo(), two, been, (steps + x.getTime()));
 				}
 				if (add)
-					been.remove(x);
+					been.remove(been.size()-1);
 			}
 		}
 	}
+	
+	public void checkDistance(String one, String two, ArrayList<String> been, double steps) {
+		boolean con = true;
+		for (Edge e : get(one).getEdges())
+			if (e.getTwo().equalsIgnoreCase(two)) {
+				match = true;
+				con = false;
+				if (shortestDistance == 0 || steps <= shortestDistance)
+					shortestDistance = (steps + e.getLength());
+			}
 
-	// for (int i = 1; i < a.length; i++) {
-	// if (map.containsKey(a[i].substring(0, 1))) {
-	// HashSet<String> t = map.get(a[i].substring(0, 1));
-	// t.add(a[i].substring(1));
-	// map.put(a[i].substring(0, 1), t);
-	// } else {
-	// HashSet<String> t = new HashSet<String>();
-	// t.add(a[i].substring(1));
-	// map.put(a[i].substring(0, 1), t);
-	// }
-	//
-	// if (map.containsKey(a[i].substring(1))) {
-	// HashSet<String> t = map.get(a[i].substring(1));
-	// t.add(a[i].substring(0, 1));
-	// map.put(a[i].substring(1), t);
-	// } else {
-	// HashSet<String> t = new HashSet<String>();
-	// t.add(a[i].substring(0, 1));
-	// map.put(a[i].substring(1), t);
-	// }
-	// }
+		if (con) {
+			ArrayList<Edge> set = get(one).getEdges();
+			for (Edge x : set) {
+				boolean add = false;
+				if (!been.contains(x.getTwo())) {
+					add = true;
+					been.add(x.getTwo());
+					checkDistance(x.getTwo(), two, been, (steps + x.getLength()));
+				}
+				if (add)
+					been.remove(been.size()-1);
+			}
+		}
+	}
+	
+	public void checkCost(String one, String two, ArrayList<String> been, double steps) {
+		boolean con = true;
+		for (Edge e : get(one).getEdges())
+			if (e.getTwo().equalsIgnoreCase(two)) {
+				match = true;
+				con = false;
+				if (shortestCost == 0 || steps <= shortestCost)
+					shortestCost = (steps + e.getCost());
+			}
+
+		if (con) {
+			ArrayList<Edge> set = get(one).getEdges();
+			for (Edge x : set) {
+				boolean add = false;
+				if (!been.contains(x.getTwo())) {
+					add = true;
+					been.add(x.getTwo());
+					checkCost(x.getTwo(), two, been, (steps + x.getCost()));
+				}
+				if (add)
+					been.remove(been.size()-1);
+			}
+		}
+	}
 }
