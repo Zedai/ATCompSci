@@ -39,7 +39,26 @@ public class ShortestPathGraph {
 		return map.containsKey(letter);
 	}
 
-WRUFHDSKHGKSDHFGKSHFGDHFDSHFISHDILF
+	public void check(String one, String two, ArrayList<String> been, int steps) {
+			if (map.get(one).contains(two)) {
+				match = true;
+				if (shortest == 0 || steps <= shortest)
+					shortest = steps;
+			} else {
+				HashSet<String> set = map.get(one);
+				for (String x : set){
+					boolean add = false;
+					if (!been.contains(x)) {
+						add = true;
+						been.add(x);
+						check(x, two, been, steps + 1);
+					}
+					if(add)
+						been.remove(x);
+				}
+			}
+	}
+
 	public String toString() {
 		return "";
 	}
