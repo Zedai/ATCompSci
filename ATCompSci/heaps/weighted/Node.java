@@ -18,10 +18,6 @@ public class Node {
 		neighbors.add(e);
 	}
 	
-//	public void removeEdge(){
-//		
-//	}
-	
 	public ArrayList<Edge> getEdges(){
 		return neighbors;
 	}

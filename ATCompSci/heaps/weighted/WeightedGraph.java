@@ -43,17 +43,43 @@ public class WeightedGraph {
 		return null;
 	}
 
-	public void checkTime(String one, String two, ArrayList<String> been, double steps) {
-		boolean con = true;
+	public void check(String test, Weighted choice) {
+		ArrayList<String> array = new ArrayList<String>();
+		array.add(test.substring(0, 1));
+		switch (choice) {
+			case COST:
+				checkCost(test.substring(0, 1), test.substring(1), array, 0);
+				break;
+			case DISTANCE:
+				checkDistance(test.substring(0, 1), test.substring(1), array, 0);
+				break;
+			case TIME:
+				checkTime(test.substring(0, 1), test.substring(1), array, 0);
+				break;
+			default:
+				checkTime(test.substring(0, 1), test.substring(1), array, 0);
+				break;
+		}
+	}
+
+	/**
+	 * 	Method that determines the shortest time elapsed between two point
+	 * @param one Starting point
+	 * @param two Ending point
+	 * @param been Current Path
+	 * @param steps
+	 */
+	private void checkTime(String one, String two, ArrayList<String> been, double steps) {
+		boolean contin = true;
 		for (Edge e : get(one).getEdges())
 			if (e.getTwo().equalsIgnoreCase(two)) {
 				match = true;
-				con = false;
+				contin = false;
 				if (shortestTime == 0 || steps <= shortestTime)
 					shortestTime = (steps + e.getTime());
 			}
 
-		if (con) {
+		if (contin) {
 			ArrayList<Edge> set = get(one).getEdges();
 			for (Edge x : set) {
 				boolean add = false;
@@ -67,18 +93,18 @@ public class WeightedGraph {
 			}
 		}
 	}
-	
-	public void checkDistance(String one, String two, ArrayList<String> been, double steps) {
-		boolean con = true;
+
+	private void checkDistance(String one, String two, ArrayList<String> been, double steps) {
+		boolean contin = true;
 		for (Edge e : get(one).getEdges())
 			if (e.getTwo().equalsIgnoreCase(two)) {
 				match = true;
-				con = false;
+				contin = false;
 				if (shortestDistance == 0 || steps <= shortestDistance)
 					shortestDistance = (steps + e.getLength());
 			}
 
-		if (con) {
+		if (contin) {
 			ArrayList<Edge> set = get(one).getEdges();
 			for (Edge x : set) {
 				boolean add = false;
@@ -92,18 +118,18 @@ public class WeightedGraph {
 			}
 		}
 	}
-	
-	public void checkCost(String one, String two, ArrayList<String> been, double steps) {
-		boolean con = true;
+
+	private void checkCost(String one, String two, ArrayList<String> been, double steps) {
+		boolean contin = true;
 		for (Edge e : get(one).getEdges())
 			if (e.getTwo().equalsIgnoreCase(two)) {
 				match = true;
-				con = false;
+				contin = false;
 				if (shortestCost == 0 || steps <= shortestCost)
 					shortestCost = (steps + e.getCost());
 			}
 
-		if (con) {
+		if (contin) {
 			ArrayList<Edge> set = get(one).getEdges();
 			for (Edge x : set) {
 				boolean add = false;
