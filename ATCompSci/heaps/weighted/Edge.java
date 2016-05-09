@@ -9,7 +9,7 @@ public class Edge {
 		this.two = two;
 		length = Double.parseDouble(dist);
 		cost = Double.parseDouble(c);
-		time = (60.0/Double.parseDouble(speed)) * Double.parseDouble(dist);
+		time = (60.0/Double.parseDouble(speed)) * Double.parseDouble(dist);			//Converts Distance and Speed to Time in minutes.
 	}
 
 	public String getOne(){

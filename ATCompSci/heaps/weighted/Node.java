@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Node {
 	private String name;
-	private ArrayList<Edge> neighbors = new ArrayList<Edge>();
+	private ArrayList<Edge> neighbours = new ArrayList<Edge>();
 	
 	public Node(String n){
 		name = n;
@@ -15,10 +15,10 @@ public class Node {
 	}
 	
 	public void addEdge(Edge e){
-		neighbors.add(e);
+		neighbours.add(e);
 	}
 	
 	public ArrayList<Edge> getEdges(){
-		return neighbors;
+		return neighbours;
 	}
 }
