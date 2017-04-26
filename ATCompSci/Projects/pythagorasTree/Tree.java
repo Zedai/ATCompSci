@@ -49,7 +49,7 @@ public class Tree extends JPanel{
 			System.err.println("Enter a Valid Input");
 			System.exit(0);
 		}
-		
+	
 
 		alpha = Math.toRadians(a);
 		beta = Math.PI/2 - alpha;

@@ -11,7 +11,7 @@ public class ColouredPolygon{
 		col = c;
 		poly = p;
 	}
-	
+
 	public Polygon getPolygon(){
 		return poly;
 	}
